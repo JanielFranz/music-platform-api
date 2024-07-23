@@ -3,9 +3,10 @@ const router = express.Router()
 
 //CRUD
 
-router.get("/tracks", (req, res) =>{
+router.get("/", (req, res) =>{
     const data = ["hola", "mundo"]
     res.send({data})
+
 })
 
 module.exports = router

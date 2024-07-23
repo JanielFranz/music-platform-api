@@ -8,9 +8,9 @@ app.use(cors())
 
 const port = process.env.PORT || 3000
 
-//Invoking routes
-//concat with tracks
-app.use("/api", require('./routes/tracks'))
+//Invoking routes(index.js)
+//concat with index.js
+app.use("/api", require('./routes/'))
 
 app.listen(port, () =>{
     console.log(`http://localhost:${port}`)
