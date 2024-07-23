@@ -12,4 +12,5 @@ app.listen(port, () =>{
     console.log(`http://localhost:${port}`)
 })
 
+//testing if the connection is successful
 dbConnect()
