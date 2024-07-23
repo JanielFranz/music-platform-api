@@ -1,18 +1,18 @@
 //config of mongo
 const mongoose = require('mongoose')
 
-const dbConnect = () =>{
+const dbConnect = async () =>{
     const DB_URI = process.env.DB_URI
-    mongoose.connect(DB_URI, {
-        useNewUrlParser : true,
-        userUnifiedTopology:true,
-    },(err,res) =>{
-        if(!err){
-            console.log('*** DB Connected ***')
-        }else{
-            console.log('*** DB Connection Failed ***')
-        }
-    })
+    try {
+        await mongoose.connect(DB_URI, {
+            //Commented because of deprecation warning
+            // useNewUrlParser: true,
+            // useUnifiedTopology: true,
+        })
+        console.log('*** DB Connected ***')
+    }catch(err){
+        console.log('*** DB Connection Failed ***')
+    }
 }
 
 module.exports = dbConnect
