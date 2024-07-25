@@ -7,11 +7,10 @@ const StorageScheme = new mongoose.Schema(
         url:{
             type: String
         },
-        fileName:{
-            type:Number
-        },
-    },
-    {
+        filename:{
+             type: String
+        }
+    }, {
         timestamps: true, //createdAt, updatedAt
         versionKey: false
     }
