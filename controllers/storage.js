@@ -2,6 +2,10 @@ const {storageModel} = require('../models')
 
 const uploadFile = async (req, res) =>{
     const {body, file} = req
+    //
+    const fileData = {
+        filename: file.filename
+    }
     const data = await storageModel.create(body)
     console.log(file)
     res.send({file})

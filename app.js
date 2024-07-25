@@ -6,6 +6,8 @@ const dbConnect = require('./config/mongo')
 
 app.use(cors())
 app.use(express.json())
+//the resources can be accessed from storage package
+app.use(express.static("storage"))
 
 const port = process.env.PORT || 3000
 
