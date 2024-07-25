@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const uploadMiddleware = require("../utils/handleStorage")
-const uploadFile = require("../controllers/storage")
+const {uploadFile} = require("../controllers/storage")
 
 
 
