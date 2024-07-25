@@ -14,7 +14,7 @@ const getItem = (req, res)=>{}
 //Create an item
 const createItem = (req, res) =>{
     const {body} = req
-    //It's undefined because we are not using express.json
+    //now it's sending data to the database
     console.log(body)
     res.send({algo:1})
 }
