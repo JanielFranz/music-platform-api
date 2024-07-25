@@ -1,12 +1,10 @@
 const express = require('express')
 const router = express.Router()
-
+const {getItems, getItem} = require("../controllers/tracks")
 //CRUD
-
-router.get("/", (req, res) =>{
-    const data = ["hola", "mundo"]
-    res.send({data})
-
-})
+//
+// GET METHOD
+router.get("/", getItems)
+router.get("/:id", getItem)
 
 module.exports = router
