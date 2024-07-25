@@ -1,10 +1,11 @@
-
+//This is referring to the index
+const {tracksModel} = require('../models')
 
 
 
 //get list of the items
-const getItems = (req, res) =>{
-    const data = ["hola", "mundo"]
+const getItems = async (req, res) =>{
+    const data = await tracksModel.find({})
     res.send({data})
 
 }
