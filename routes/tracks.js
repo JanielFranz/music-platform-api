@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const {getItems, getItem, createItem} = require("../controllers/tracks")
+const {validatorCreateItem} = require('../validators/tracks')
+
 //CRUD
 //
 // GET METHOD
@@ -9,6 +11,7 @@ const {getItems, getItem, createItem} = require("../controllers/tracks")
 // trigger the getItems function.
 router.get("/", getItems)
 //POST METHOD
-router.post("/", createItem)
+//using validator
+router.post("/", validatorCreateItem, createItem)
 
 module.exports = router
