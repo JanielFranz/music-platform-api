@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {getItems, getItem} = require("../controllers/tracks")
+const {getItems, getItem, createItem} = require("../controllers/tracks")
 //CRUD
 //
 // GET METHOD
@@ -8,6 +8,7 @@ const {getItems, getItem} = require("../controllers/tracks")
 // the router is mounted. will GET request to /api/tracks/ will
 // trigger the getItems function.
 router.get("/", getItems)
-router.get("/:id", getItem)
+//POST METHOD
+router.post("/", createItem)
 
 module.exports = router

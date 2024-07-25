@@ -12,7 +12,12 @@ const getItems = async (req, res) =>{
 //get a single item
 const getItem = (req, res)=>{}
 //Create an item
-const createItem = (req, res) =>{}
+const createItem = (req, res) =>{
+    const {body} = req
+    //It's undefined because we are not using express.json
+    console.log(body)
+    res.send({algo:1})
+}
 //Update an item
 const updateItem = (req, res)=>{}
 //Delete an item
