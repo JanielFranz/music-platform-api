@@ -12,11 +12,12 @@ const getItems = async (req, res) =>{
 //get a single item
 const getItem = (req, res)=>{}
 //Create an item
-const createItem = (req, res) =>{
+const createItem = async (req, res) =>{
     const {body} = req
     //now it's sending data to the database
     console.log(body)
-    res.send({algo:1})
+    const data = await tracksModel.create(body)
+    res.send({data})
 }
 //Update an item
 const updateItem = (req, res)=>{}
