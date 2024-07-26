@@ -1,8 +1,28 @@
 const {storageModel} = require('../models')
+const {handleHttpError} = require("../utils/handleError");
+const {matchedData} = require("express-validator");
+
 //Getting values from .env file
 const PUBLIC_URL = process.env.PUBLIC_URL
 
+const getFiles = async (req, res) =>{
+    try{
+        const data = await storageModel.find({})
+        res.send({data})
+    }catch(e){
+        handleHttpError(res, "No se pudo obtener los archivos")
+    }
+}
 
+const getFile = async(req,res) =>{
+    try{
+        const {id} = matchedData(req)
+        const data = await storageModel.findById(id)
+        res.send({data})
+    }catch(e){
+        handleHttpError(res,"No se pudo obtener el archivo especifico")
+    }
+}
 
 
 const uploadFile = async (req, res) =>{
@@ -20,4 +40,4 @@ const uploadFile = async (req, res) =>{
 }
 //If we use {} in the import we will use {} too
 //file show us the information of the file that we uploaded, we can use this info later to use filters or validations
-module.exports = {uploadFile}
+module.exports = {uploadFile, getFiles, getFile}

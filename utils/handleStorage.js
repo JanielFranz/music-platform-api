@@ -8,6 +8,7 @@ const storage = multer.diskStorage({
         //__dirname is the current directory
         const pathStorage = `${__dirname}/../storage`
         //null is the error and pathStorage is the destination
+        console.log(pathStorage)
         cb(null, pathStorage)
     },
     filename: function(req, file, cb){

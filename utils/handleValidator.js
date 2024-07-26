@@ -1,5 +1,5 @@
 const {validationResult} = require('express-validator')
-
+//this shows the validation that we have in validators/tracks.js
 const validateResults = (req, res, next) => {
     try{
         //if there is an error it will throw an exception
