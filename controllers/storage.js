@@ -30,7 +30,10 @@ const getFile = async(req,res) =>{
 const deleteFile = async(req,res) =>{
     try{
         const{id} = matchedData(req)
+        //finding the data by id
         const dataFile = await storageModel.findById(id)
+        //deleting from the db
+        await storageModel.deleteOne({_id:id})
         //getting the file name from the data
         const {filename} = dataFile
         //we get the file path
