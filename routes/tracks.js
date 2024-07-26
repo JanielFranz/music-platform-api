@@ -14,6 +14,6 @@ router.get("/", getItems)
 //POST METHOD
 //using validator
 // here we can use multiple middlewares
-router.post("/", validatorCreateItem, customHeader, createItem)
+router.post("/", validatorCreateItem, createItem)
 
 module.exports = router
