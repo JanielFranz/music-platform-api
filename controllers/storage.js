@@ -1,9 +1,12 @@
+const fs = require('fs')
 const {storageModel} = require('../models')
 const {handleHttpError} = require("../utils/handleError");
 const {matchedData} = require("express-validator");
 
 //Getting values from .env file
 const PUBLIC_URL = process.env.PUBLIC_URL
+//where is storage the file
+const MEDIA_PATH = `${__dirname}/../storage`
 
 const getFiles = async (req, res) =>{
     try{
@@ -24,6 +27,27 @@ const getFile = async(req,res) =>{
     }
 }
 
+const deleteFile = async(req,res) =>{
+    try{
+        const{id} = matchedData(req)
+        const dataFile = await storageModel.findById(id)
+        //getting the file name from the data
+        const {filename} = dataFile
+        //we get the file path
+        const filePath = `${MEDIA_PATH}/${filename}`
+        // to delete the file from the hard disk
+        fs.unlinkSync(filePath)
+        //we delete the file but not of the db
+        const data = {
+            filePath,
+            deleted:1
+        }
+        res.send({data})
+    }catch(e){
+        handleHttpError(res, "No se pudo eliminar")
+    }
+}
+
 
 const uploadFile = async (req, res) =>{
     const {body, file} = req
@@ -40,4 +64,4 @@ const uploadFile = async (req, res) =>{
 }
 //If we use {} in the import we will use {} too
 //file show us the information of the file that we uploaded, we can use this info later to use filters or validations
-module.exports = {uploadFile, getFiles, getFile}
+module.exports = {uploadFile, getFiles, getFile, deleteFile}

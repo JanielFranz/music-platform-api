@@ -14,7 +14,7 @@ const{validatorGetFile} = require('../validators/storage')
 router.post("/",uploadMiddleware.single("myFile"), uploadFile)
 router.get("/", getFiles )
 router.get("/:id", validatorGetFile, getFile)
-// router.delete("/:id", const{validatorGetFile} = require('../validators/storage') deleteFile)
+router.delete("/:id", validatorGetFile, deleteFile)
 // router.put("/:id", updateFile)
 
 module.exports = router
