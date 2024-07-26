@@ -22,6 +22,7 @@ router.get("/:id", validatorGetItem, getItem)
 //Here we use both validators, one for the body and one for the params
 router.put("/:id", validatorCreateItem, validatorGetItem, updateItem)
 //DELETE METHOD
-router.delete("/:id", deleteItem)
+//It has validatorGetItem because of the Id
+router.delete("/:id",validatorGetItem, deleteItem)
 
 module.exports = router

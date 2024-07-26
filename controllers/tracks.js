@@ -68,6 +68,17 @@ const updateItem = async (req, res)=>{
 
 }
 //Delete an item
-const deleteItem = async (req, res) =>{}
+const deleteItem = async (req, res) =>{
+    try{
+        req = matchedData(req)
+        const {id} = req
+        //the dumbass of the instructor use delete and it doesn't work for him because of soft delete
+        //Instead of findByIdAndDelete he uses deleteOne({_id:id})
+        const data = await tracksModel.findByIdAndDelete(id)
+        res.send(data)
+    }catch(error){
+        handleHttpError(res, "Error deleting item")
+    }
+}
 
 module.exports = {getItems, getItem, createItem, updateItem, deleteItem}
