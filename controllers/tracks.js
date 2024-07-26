@@ -15,7 +15,7 @@ const getItem = (req, res)=>{}
 const createItem = async (req, res) =>{
     const {body} = req
     //now it's sending data to the database
-    console.log(body)
+    console.log(req.headers)
     const data = await tracksModel.create(body)
     res.send({data})
 }
