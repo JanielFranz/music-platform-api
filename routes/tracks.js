@@ -19,8 +19,9 @@ router.post("/", validatorCreateItem, createItem)
 //GET METHOD
 router.get("/:id", validatorGetItem, getItem)
 //PUT METHOD
-router.put("/:id", updateItem)
-module.exports = router
-
+//Here we use both validators, one for the body and one for the params
+router.put("/:id", validatorCreateItem, validatorGetItem, updateItem)
 //DELETE METHOD
 router.delete("/:id", deleteItem)
+
+module.exports = router

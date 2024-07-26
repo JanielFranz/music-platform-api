@@ -28,7 +28,7 @@ const getItem = async (req, res)=>{
         const {id} = req
         //we find by the id that we get from the request
         const data= await tracksModel.findById(id)
-        console.log(data)
+
         res.send({data})
     }catch(error){
         handleHttpError(res,"Error get item")
@@ -49,7 +49,24 @@ const createItem = async (req, res) =>{
 
 }
 //Update an item
-const updateItem = async (req, res)=>{}
+const updateItem = async (req, res)=>{
+
+    try{
+        //we extract the id and the rest goes to the body
+        //we are creating two objects, one with id and the other with the rest of stuff
+        const {id, ...body} = matchedData(req)
+        console.log(id)
+        console.log(body)
+        //the first argument is the id and the second is the body (find and update)
+        //Here we have to specify wich one is the id, it's not like the get method
+        const data = await tracksModel.findOneAndUpdate({_id: id}, body)
+        console.log(data)
+        res.send({data})
+    }catch(error){
+        handleHttpError(res, "Error updating item")
+    }
+
+}
 //Delete an item
 const deleteItem = async (req, res) =>{}
 
