@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const {getItems, getItem, createItem} = require("../controllers/tracks")
+const {getItems, getItem, createItem, updateItem, deleteItem} = require("../controllers/tracks")
 const {validatorCreateItem} = require('../validators/tracks')
+const {validatorGetItem} = require('../validators/tracks')
 const customHeader = require('../middleware//customHeader')
 
 //CRUD
@@ -15,5 +16,11 @@ router.get("/", getItems)
 //using validator
 // here we can use multiple middlewares
 router.post("/", validatorCreateItem, createItem)
-
+//GET METHOD
+router.get("/:id", validatorGetItem, getItem)
+//PUT METHOD
+router.put("/:id", updateItem)
 module.exports = router
+
+//DELETE METHOD
+router.delete("/:id", deleteItem)

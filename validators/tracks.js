@@ -1,5 +1,5 @@
 const {check} = require('express-validator')
-const validateResult = require('../utils/handleValidator')
+const validateResults = require('../utils/handleValidator')
 //we create an object for every middleware that we will apply to a method (controller)
 //to make the validations we will use the models that we created before
 //TRACKS:
@@ -42,10 +42,20 @@ const validatorCreateItem = [
         .isMongoId(),
     //calling the function that will handle the validation
     (req,res,next) => {
-        return validateResult(req,res,next)
+        return validateResults(req,res,next)
     }
 
 
 ]
 
-module.exports = {validatorCreateItem}
+const validatorGetItem= [
+    check("id")
+        .exists()
+        .notEmpty()
+        .isMongoId(),
+    (req, res, next) => {
+        return validateResults(req,res,next)
+    }
+
+]
+module.exports = {validatorCreateItem, validatorGetItem}

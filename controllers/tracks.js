@@ -19,12 +19,19 @@ const getItems = async (req, res) =>{
 
 }
 //get a single item
-const getItem = (req, res)=>{
+const getItem = async (req, res)=>{
 
     try{
-
+        //Here the matchedData knows that I'm talking about the id from the params
+        req = matchedData(req)
+        //we use {} to get the id from the request
+        const {id} = req
+        //we find by the id that we get from the request
+        const data= await tracksModel.findById(id)
+        console.log(data)
+        res.send({data})
     }catch(error){
-
+        handleHttpError(res,"Error get item")
     }
 }
 //Create an item
@@ -42,8 +49,8 @@ const createItem = async (req, res) =>{
 
 }
 //Update an item
-const updateItem = (req, res)=>{}
+const updateItem = async (req, res)=>{}
 //Delete an item
-const deleteItem = (req, res) =>{}
+const deleteItem = async (req, res) =>{}
 
 module.exports = {getItems, getItem, createItem, updateItem, deleteItem}
