@@ -74,7 +74,8 @@ const deleteItem = async (req, res) =>{
         const {id} = req
         //the dumbass of the instructor use delete and it doesn't work for him because of soft delete
         //Instead of findByIdAndDelete he uses deleteOne({_id:id})
-        const data = await tracksModel.findByIdAndDelete(id)
+        //we are using delete because of the mongoose-delete plugin
+        const data = await tracksModel.delete({_id : id})
         res.send(data)
     }catch(error){
         handleHttpError(res, "Error deleting item")

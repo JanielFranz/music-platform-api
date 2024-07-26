@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-
+//mongoose delete for soft delete
+const mongooseDelete = require('mongoose-delete')
 //declaring the schema
 
 const TracksScheme = new mongoose.Schema(
@@ -48,5 +49,7 @@ const TracksScheme = new mongoose.Schema(
         versionKey: false
     }
 )
+//overriding native methods
+TracksScheme.plugin(mongooseDelete, {overrideMethods: "all"})
 //users = collection name, in rdb will be a table
 module.exports = mongoose.model("tracks", TracksScheme)

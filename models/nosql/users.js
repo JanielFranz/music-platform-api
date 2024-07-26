@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const mongooseDelete = require('mongoose-delete')
 //declaring the schema
 
 const UserScheme = new mongoose.Schema(
@@ -28,5 +28,7 @@ const UserScheme = new mongoose.Schema(
         versionKey: false
     }
 )
+
+UserScheme.plugin(mongooseDelete, {overrideMethods: "all"})
 //users = collection name, in rdb will be a table
 module.exports = mongoose.model("users", UserScheme)
