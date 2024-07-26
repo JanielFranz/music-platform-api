@@ -1,6 +1,7 @@
 //This is referring to the index
 const {tracksModel} = require('../models')
 const {handleHttpError} = require("../utils/handleError");
+const {matchedData} = require("express-validator");
 
 
 
@@ -29,7 +30,8 @@ const getItem = (req, res)=>{
 //Create an item
 const createItem = async (req, res) =>{
     try{
-        const {body} = req
+        //matched data only accepts the data that exists in a model, so it cleans the body
+        const body = matchedData(req)
         //now it's sending data to the database
         const data = await tracksModel.create(body)
         res.send({data})
