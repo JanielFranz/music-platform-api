@@ -5,7 +5,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
  * @param user
  * @returns {Promise<*>}
  */
-const tokenSignIn = async (user) =>{
+const tokenSign = async (user) =>{
     const sign = jwt.sign(
         { //set the payload
             _id : user.id,
@@ -32,4 +32,4 @@ const verifyToken = async (tokenJwt) => {
     }
 }
 
-module.exports = {tokenSignIn, verifyToken}
+module.exports = {tokenSign, verifyToken}

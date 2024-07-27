@@ -13,7 +13,7 @@ const validatorRegisterUser = [
     check("password")
         .exists()
         .notEmpty()
-        .isLength({min:6, max:99}),
+        .isLength({min:6, max:15}),
     check("email")
         .exists()
         .notEmpty()

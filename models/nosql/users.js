@@ -17,7 +17,7 @@ const UserScheme = new mongoose.Schema(
         password:{
             type:String,
             //for not returning the data in the response
-            select: false
+            select: false// used to exclude the password field when fetching documents from the database.
         },
         role:{
             //enum, is used to restrict the values that can be assigned to the role field
