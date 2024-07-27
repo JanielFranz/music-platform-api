@@ -2,14 +2,16 @@ const express = require('express')
 const router = express.Router()
 const {validatorLoginUser, validatorRegisterUser} = require('../validators/auth')
 const {matchedData} = require("express-validator");
+const {encrypt, compare} = require("../utils/handlePassword")
 //POST
 
 //I want to have two routers, login and register
 //the route is /api/auth/register
-router.post("/register", validatorRegisterUser,(req,res) =>{
-
-    req = matchedData(req)
-    res.send({data: req})
+router.post("/register", validatorRegisterUser,async (req,res) =>{
+    req = matchedData(req) //req cleaned
+    const password = await encrypt(req.password) //encrypt password
+    const body = {...req, password} //we get all the data from req and add the password or replace it if it exists
+    res.send({data: body})
 })
 
 module.exports = router
