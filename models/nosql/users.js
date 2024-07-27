@@ -15,11 +15,13 @@ const UserScheme = new mongoose.Schema(
             unique:true
         },
         password:{
-            type:String
+            type:String,
+            //for not returning the data in the response
+            select: false
         },
         role:{
             //enum, is used to restrict the values that can be assigned to the role field
-            type:["user", "admin"],
+            type : ["admin", "user"],
             default: "user"
         }
     },
