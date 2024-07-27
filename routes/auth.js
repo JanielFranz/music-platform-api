@@ -4,6 +4,7 @@ const {validatorLoginUser, validatorRegisterUser} = require('../validators/auth'
 const {matchedData} = require("express-validator");
 const {encrypt, compare} = require("../utils/handlePassword")
 const {usersModel} = require("../models/index")
+const{tokenSignIn, verifyToken} = require('../utils/handleJwt')
 //POST
 
 //I want to have two routers, login and register
@@ -12,8 +13,14 @@ router.post("/register", validatorRegisterUser,async (req,res) =>{
     req = matchedData(req) //req cleaned
     const password = await encrypt(req.password) //encrypt password
     const body = {...req, password} //we get all the data from req and add the password or replace it if it exists
-    const data = await usersModel.create(body) //persisting data to the database
-    data.set('password', undefined, {strict: false}) //we remove the password from the response
+    const dataUser = await usersModel.create(body) //persisting data to the database
+    dataUser.set('password', undefined, {strict: false}) //we remove the password from the response
+    console.log(dataUser)
+    const data = {
+        token: await tokenSignIn(dataUser), //we generate the token and added to the response
+        user: dataUser
+    }
+
     res.send({data})
 })
 
