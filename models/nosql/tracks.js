@@ -63,6 +63,9 @@ TracksScheme.statics.findAllData = async function(name){ //findAllData is the na
                     foreignField: "_id", //storage._id
                     as: "audio" //Alias
                 }
+            },
+            {
+                $unwind: "$audio"
             }
         ])
         console.log("Data unida", joinData)
