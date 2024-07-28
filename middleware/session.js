@@ -12,11 +12,13 @@ const authMiddleware = async (req, res, next) =>{
     try{
         if(!req.headers.authorization){ //if there is no authorization header
             handleHttpError(res,"no hay token", 401)
+            return
         }
         const token = req.headers.authorization.split(' ').pop() //get the token from the header doing a split when there is a space and getting the last element
         const dataToken = await verifyToken(token)
         if(!dataToken._id){
             handleHttpError(res, "No se encuentra el id token", 401)
+            return
         }
         next()
 

@@ -4,14 +4,15 @@ const {getItems, getItem, createItem, updateItem, deleteItem} = require("../cont
 const {validatorCreateItem} = require('../validators/tracks')
 const {validatorGetItem} = require('../validators/tracks')
 const customHeader = require('../middleware//customHeader')
-
+const authMiddleware = require('../middleware/session')
 //CRUD
 //
 // GET METHOD
 // the "/" corresponds to the root of the /api/tracks path where
 // the router is mounted. will GET request to /api/tracks/ will
 // trigger the getItems function.
-router.get("/", getItems)
+//we are protecting this route with authMiddleware
+router.get("/", authMiddleware, getItems)
 //POST METHOD
 //using validator
 // here we can use multiple middlewares
