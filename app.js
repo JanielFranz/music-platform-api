@@ -3,6 +3,8 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const dbConnect = require('./config/mongo')
+const ENGINE_DB = process.env.ENGINE_DB
+const {sequelize, dbConnectMySql} = require('./config/mysql')
 
 app.use(cors())
 app.use(express.json())
@@ -20,4 +22,11 @@ app.listen(port, () =>{
 })
 
 //testing if the connection is successful
-dbConnect()
+    //if the engine is nosql, we will use the dbConnect function
+
+if (ENGINE_DB === 'nosql'){
+    dbConnect()
+}
+else{
+    dbConnectMySql()
+}
