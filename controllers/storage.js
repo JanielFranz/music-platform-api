@@ -55,6 +55,7 @@ const deleteFile = async(req,res) =>{
 const uploadFile = async (req, res) => {
     try {
         const {file} = req
+        console.log("file", {file})
         //
         //we use fileData to show the information in the response
         const fileData = {
