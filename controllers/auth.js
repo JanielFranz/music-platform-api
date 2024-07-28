@@ -41,7 +41,6 @@ const signInController = async(req, res) => {
     try{
         req = matchedData(req) //req cleaned
         const user = await usersModel.findOne({email:req.email})//we search for the user in the database where email is equal to req.email.
-            .select('password name role email')  //We access the password and other attributes when we fetch the user from the database
         if(!user){ //if user doesn't exist
             res.send(res, "No se encontro el usuario", 404)
         }
