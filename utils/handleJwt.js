@@ -1,7 +1,7 @@
 const   jwt = require('jsonwebtoken')
 const JWT_SECRET = process.env.JWT_SECRET;
 /**
- * We have to pass the user object to the function and it will return a token
+ * We have to pass the user object to the function, and it will return a token
  * @param user
  * @returns {Promise<*>}
  */
@@ -20,7 +20,7 @@ const tokenSign = async (user) =>{
 }
 
 /**
- * We have to pass the token to the function
+ * We have to pass the token to the function and this will verify it if the token is valid it will return the payload
  * @param tokenJwt
  * @returns {Promise<*>}
  */
