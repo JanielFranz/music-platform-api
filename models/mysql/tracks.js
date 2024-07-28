@@ -3,6 +3,12 @@ const {DataTypes} = require('sequelize')
 
 const Track = sequelize.define("tracks",
     {
+        id:{
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false
+        },
         name:{
             type: DataTypes.STRING,
             allowNull: false
