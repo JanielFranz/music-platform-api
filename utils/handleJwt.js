@@ -11,7 +11,7 @@ const propertiesKey = getProperties()
 const tokenSign = async (user) =>{
     const sign = jwt.sign(
         { //set the payload
-            [propertiesKey.id] : user[propertiesKey.id], //I change the value to a dynamic value
+            id : user.id, //I change the value to a dynamic value
             role: user.role
         },
         JWT_SECRET,
