@@ -5,6 +5,7 @@ const {validatorCreateItem} = require('../validators/tracks')
 const {validatorGetItem} = require('../validators/tracks')
 const customHeader = require('../middleware//customHeader')
 const authMiddleware = require('../middleware/session')
+const checkRol = require('../middleware/rol')
 //CRUD
 //
 // GET METHOD
@@ -16,14 +17,15 @@ router.get("/", authMiddleware, getItems)
 //POST METHOD
 //using validator
 // here we can use multiple middlewares
-router.post("/", validatorCreateItem, createItem)
+// checkRol has to be after authMiddleware
+router.post("/", authMiddleware,checkRol(["admin"]), validatorCreateItem, createItem)
 //GET METHOD
-router.get("/:id", validatorGetItem, getItem)
+router.get("/:id", authMiddleware, validatorGetItem, getItem)
 //PUT METHOD
 //Here we use both validators, one for the body and one for the params
-router.put("/:id", validatorCreateItem, validatorGetItem, updateItem)
+router.put("/:id", authMiddleware, validatorCreateItem, validatorGetItem, updateItem)
 //DELETE METHOD
-//It has validatorGetItem because of the Id
-router.delete("/:id",validatorGetItem, deleteItem)
+//It has validatorGetItem because of the id
+router.delete("/:id", authMiddleware, validatorGetItem, deleteItem)
 
 module.exports = router
