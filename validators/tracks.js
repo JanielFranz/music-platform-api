@@ -18,28 +18,27 @@ const validatorCreateItem = [
     check("artist")
         .exists()
         .notEmpty(),
-    check("artist.name")
+    check("artist_name")
         .exists()
         .notEmpty(),
-    check("artist.nickname")
+    check("artist_nickname")
         .exists()
         .notEmpty(),
-    check("artist.nationality")
+    check("artist_nationality")
         .exists()
         .notEmpty(),
     check("duration")
         .exists()
         .notEmpty(),
-    check("duration.start")
+    check("duration_start")
         .exists()
         .notEmpty(),
-    check("duration.end")
+    check("duration_end")
         .exists()
         .notEmpty(),
     check("mediaId")
         .exists()
-        .notEmpty()
-        .isMongoId(),
+        .notEmpty(),
     //calling the function that will handle the validation
     (req,res,next) => {
         return validateResults(req,res,next)
