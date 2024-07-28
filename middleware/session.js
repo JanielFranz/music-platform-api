@@ -1,6 +1,6 @@
 const {handleHttpError} = require('../utils/handleError')
 const {verifyToken} = require('../utils/handleJwt')
-
+const usersModel = require('../models/nosql/users')
 /**
  * With this middleware we will check if the header has the authorization token
  * @param req
@@ -20,10 +20,15 @@ const authMiddleware = async (req, res, next) =>{
             handleHttpError(res, "No se encuentra el id token", 401)
             return
         }
+        console.log(dataToken._id)
+        const user = await usersModel.findById(dataToken._id) //getting the user by the id that we have in the payload
+        req.user = user //adding the user to the request
+
         next()
 
     } catch(e){
         handleHttpError(res,"no autorizado",401 )
+        console.error(e)
     }
 }
 

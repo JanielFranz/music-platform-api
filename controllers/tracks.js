@@ -8,8 +8,9 @@ const {matchedData} = require("express-validator");
 //get list of the items
 const getItems = async (req, res) =>{
     try{
+        const user = req.user // this user was added in the session middleware
         const data = await tracksModel.find({})
-        res.send({data})
+        res.send({data, user})
     }catch(error){
         //handle error in utils
         handleHttpError(res, "Error get items")
