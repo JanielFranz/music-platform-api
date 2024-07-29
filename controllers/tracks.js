@@ -28,7 +28,7 @@ const getItem = async (req, res)=>{
         //we use {} to get the id from the request
         const {id} = req
         //we find by the id that we get from the request
-        const data= await tracksModel.findById(id)
+        const data= await tracksModel.findOneData(id)
 
         res.send({data})
     }catch(error){
