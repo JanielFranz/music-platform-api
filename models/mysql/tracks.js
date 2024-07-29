@@ -58,10 +58,11 @@ const Track = sequelize.define("tracks",
  */
 Track.findAllData = function(models){ //findAllData is the name of the function
     Track.belongsTo(Storage, {
-        foreignKey: 'mediaId'
+        foreignKey: 'mediaId',
+        as: 'audio'
     })
 
-    return Track.findAll({include:Storage}) //we are returning the function findAll with the include of the Storage model
+    return Track.findAll({include:'audio'}) //we are returning the function findAll with the include of the Storage model
 }
 
 
