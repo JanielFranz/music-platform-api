@@ -1,5 +1,6 @@
 const {sequelize} = require('../../config/mysql')
 const {DataTypes} = require('sequelize')
+const Storage = require('./storage')
 
 const Track = sequelize.define("tracks",
     {
@@ -50,5 +51,18 @@ const Track = sequelize.define("tracks",
         timestamps: true
     }
 )
+/**
+ * Implementing personalized model
+ *
+ * @type {ModelCtor<Model>}
+ */
+Track.findAllData = function(models){ //findAllData is the name of the function
+    Track.belongsTo(Storage, {
+        foreignKey: 'mediaId'
+    })
+
+    return Track.findAll({include:Storage}) //we are returning the function findAll with the include of the Storage model
+}
+
 
 module.exports = Track

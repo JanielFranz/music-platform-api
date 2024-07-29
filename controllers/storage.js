@@ -10,7 +10,7 @@ const MEDIA_PATH = `${__dirname}/../storage`
 
 const getFiles = async (req, res) =>{
     try{
-        const data = await storageModel.find({})
+        const data = await storageModel.findAllData({})
         res.send({data})
     }catch(e){
         handleHttpError(res, "No se pudo obtener los archivos")

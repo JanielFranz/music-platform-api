@@ -1,6 +1,6 @@
 const {handleHttpError} = require('../utils/handleError')
 const {verifyToken} = require('../utils/handleJwt')
-const usersModel = require('../models/nosql/users')
+const {usersModel} = require('../models')
 const getProperties = require('../utils/handlePropertiesEngine')
 
 const propertiesKey = getProperties()
@@ -21,13 +21,13 @@ const authMiddleware = async (req, res, next) =>{
         const token = req.headers.authorization.split(' ').pop() //get the token from the header doing a split when there is a space and getting the last element
         const dataToken = await verifyToken(token)
 
-        if(!dataToken){
+        if(!dataToken){ //if there is no data in the token
             handleHttpError(res, "No hay token", 401)
             return
         }
 
         const query = {
-            [propertiesKey.id] : dataToken[propertiesKey.id]
+            id : dataToken.id
         }
 
         const user = await usersModel.findOne(query) //getting the user by the id that we have in the payload

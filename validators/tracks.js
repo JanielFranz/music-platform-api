@@ -15,9 +15,6 @@ const validatorCreateItem = [
     check("cover")
         .exists()
         .notEmpty(),
-    check("artist")
-        .exists()
-        .notEmpty(),
     check("artist_name")
         .exists()
         .notEmpty(),
@@ -25,9 +22,6 @@ const validatorCreateItem = [
         .exists()
         .notEmpty(),
     check("artist_nationality")
-        .exists()
-        .notEmpty(),
-    check("duration")
         .exists()
         .notEmpty(),
     check("duration_start")
