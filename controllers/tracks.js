@@ -60,7 +60,7 @@ const updateItem = async (req, res)=>{
         console.log(body)
         //the first argument is the id and the second is the body (find and update)
         //Here we have to specify wich one is the id, it's not like the get method
-        const data = await tracksModel.findOneAndUpdate({_id: id}, body)
+        const data = await tracksModel.update(body, {where: {id}})
         console.log(data)
         res.send({data})
     }catch(error){
